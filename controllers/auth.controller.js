@@ -36,7 +36,7 @@ export const signup = async(req,res)=>{
         secure:true,
      })
 
-    res.send(user)
+      res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
 };
 
 
@@ -67,7 +67,7 @@ export const login = async(req,res)=>{
         secure:true,
     })
 
-    res.status(201).send(user);
+    res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
 
 };
 
