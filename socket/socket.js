@@ -34,10 +34,11 @@ const userSocketMap = {};
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://lets-chat-frontend.onrender.com/',
+    origin: 'https://lets-chat-frontend.onrender.com',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
-    credentials: true
+    credentials: true,
+   
 }  });
 
 

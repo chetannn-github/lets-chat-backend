@@ -12,22 +12,22 @@ import cron from "node-cron"
 const PORT = process.env.PORT || 3000;
 
 
-// const corsOptions = {
-//   origin: 'https://lets-chat-frontend.onrender.com/',
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   credentials: true,
-//   allowedHeaders:['Content-Type']
-// };
+const corsOptions = {
+  origin: 'https://lets-chat-frontend.onrender.com/',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  allowedHeaders:['Content-Type']
+};
 
 cron.schedule('*/15 * * * *', () => {
   // Ping your app's URL to keep it active
-  axios.get('https://backend-of-chat-app-react-1.onrender.com');
+  axios.get('https://lets-chat-backend-7s3j.onrender.com');
 });
 
 
 
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
