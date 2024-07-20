@@ -8,7 +8,8 @@ export const isLoggedIn = async(req,res,next) =>{
         try{
            const  data =  jwt.verify(req.cookies.token,process.env.JWT_SECRET);
         //    console.log(data+"huu")
-           req.user =await User.findOne({email:data.email}).select("-password");
+           req.user =await User.findOne({userName:data.userName}).select("-password");
+        //    console.log("req.user -----",req.user)
             next();
         }catch(err){
             // res.status(401).send("not authorized");

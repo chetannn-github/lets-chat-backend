@@ -9,7 +9,7 @@ export const signup = async(req,res)=>{
     if(!userName || !password ||!fullName || !gender || !confirmPassword ){
         return res.status(400).json({error:"please fill all fields"})
         }
-    let profilePic = `https://avatar.iran.liara.run/public/${gender==="male" ? "boy":"girl"}`;
+    let profilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`;
 
     if(password!=confirmPassword){
        return res.status(400).json({error:"Wah bhai, password ko bhi apni jodi pasand nahi aayi 😂"})
@@ -33,7 +33,7 @@ export const signup = async(req,res)=>{
     res.cookie("token",token,{
         maxAge:1000*60*60*24*30,
         httpOnly:true,
-        secure:true,
+        secure:false,
      })
 
       res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
@@ -44,19 +44,21 @@ export const signup = async(req,res)=>{
 export const login = async(req,res)=>{
    let {userName,password} = req.body;
 
+    // console.log(userName,password)
+
    if(!userName || !password ){
-    return res.status(400).json({error:"please fill all fields"})
+    return res.json({error:"please fill all fields"})
     }
 
    let user = await User.findOne({userName});
 
    if(!user){
-    return res.status(400).json({error:"username or password is wrong"})
+    return res.json({error:"username or password is wrong"})
    }
 
    let checkPass = bcrypt.compare(user.password,password);
    if(!checkPass){
-    return res.status(400).json({error:"username or password is wrong"})
+    return res.json({error:"username or password is wrong"})
    }
 
    let token = generateToken({userName});
@@ -64,7 +66,7 @@ export const login = async(req,res)=>{
    res.cookie("token",token,{
         maxAge:1000*60*60*24*30,
         httpOnly:true,
-        secure:true,
+        secure:false,
     })
 
     res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
