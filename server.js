@@ -15,12 +15,19 @@ const PORT = process.env.PORT || 3000;
 const  app = express();
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://chat-react-app-frontend.onrender.com"],
-  
+  origin: (origin, callback) => {
+    if (origin === 'http://localhost:5173' || origin === 'https://chat-react-app-frontend.onrender.com') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
-  allowedHeaders:['Content-Type']
+  allowedHeaders: ['Content-Type']
 };
+
+app.use(cors(corsOptions));
 
 
 // cron.schedule('*/15 * * * *', () => {
@@ -38,7 +45,7 @@ const corsOptions = {
 // });
 
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(cors({
   origin: (origin, callback) => {
