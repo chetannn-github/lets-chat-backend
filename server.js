@@ -24,12 +24,14 @@ cron.schedule('*/15 * * * *', () => {
   axios.get('https://lets-chat-backend-7s3j.onrender.com');
 });
 
+
+
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://lets-chat-frontend.onrender.com');
-  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 
 
 app.use(cors(corsOptions));
