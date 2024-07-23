@@ -20,7 +20,7 @@ const  app = express();
 
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Origin", "https://chat-react-app-frontend.onrender.com");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -30,16 +30,6 @@ cron.schedule('*/15 * * * *', () => {
   // Ping your app's URL to keep it active
   axios.get('https://lets-chat-backend-7s3j.onrender.com');
 });
-
-
-
-
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "https://localhost:5173");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
 
 
 
