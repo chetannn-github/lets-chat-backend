@@ -40,24 +40,30 @@ cron.schedule('*/15 * * * *', () => {
 
 
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (origin === 'http://localhost:5173' || origin === 'https://chat-react-app-frontend.onrender.com') {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  allowedHeaders: ['Content-Type'],
-  accessControlAllowCredentials: true
-};
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (origin === 'http://localhost:5173' || origin === 'https://chat-react-app-frontend.onrender.com') {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   allowedHeaders: ['Content-Type'],
+//   accessControlAllowCredentials: true
+// };
 
 
+app.use(cors({
+  origin: 'https://lets-chat-frontend.onrender.com',
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+  credentials: true
+}));
 
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser())
