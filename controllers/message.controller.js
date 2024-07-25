@@ -16,7 +16,7 @@ export const sendMessage = async(req,res) =>{
         participants:{$all:[senderId,recieverId]}
     });
 
-    
+
     if(!conversation){
         conversation = new Conversation({
             participants:[senderId,recieverId],
@@ -29,12 +29,12 @@ export const sendMessage = async(req,res) =>{
 
     // await Promise.all([newMessage.save(),conversation.save()])
 
-    // const recieverSocketId = getRecieverSocketId(recieverId);
+    const recieverSocketId = getRecieverSocketId(recieverId);
     
-    // if(recieverSocketId){
-    //   io.to(recieverSocketId).emit("newmsg",newmsg)
-    //   console.log("msg sent via socket")
-    // }
+    if(recieverSocketId){
+      io.to(recieverSocketId).emit("newmsg",newmsg)
+      console.log("msg sent via socket")
+    }
 
 
     res.json(newMessage)
