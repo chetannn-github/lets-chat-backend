@@ -6,13 +6,13 @@ import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.routes.js"
 import cookieParser from "cookie-parser";
 import cors from "cors"
-// import { app,server,io } from "./socket/socket.js";
+import { app,server,io } from "./socket/socket.js";
 import axios from "axios"
 import cron from "node-cron"
 const PORT = process.env.PORT || 3000;
 
 
-const  app = express();
+
 
 
 
@@ -74,8 +74,7 @@ app.use("/api/auth",authRoutes);
 app.use("/api/message",messageRoutes)
 app.use("/api/users",userRoutes)
 
-
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     connectToDb();
     console.log("listening on port " ,PORT)
 })
