@@ -4,6 +4,7 @@ import "dotenv/config"
 
 
 export const isLoggedIn = async(req,res,next) =>{
+    console.log(req.cookies);
     if(req.cookies.token){
         try{
            const  data =  jwt.verify(req.cookies.token,process.env.JWT_SECRET);
