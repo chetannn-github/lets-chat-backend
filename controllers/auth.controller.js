@@ -35,7 +35,7 @@ export const signup = async(req,res)=>{
         httpOnly:true,
         secure:true,
         sameSite:'none',
-        domain: 'lets-chat-frontend.onrender.com'
+        
      })
 
       res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
@@ -70,7 +70,7 @@ export const login = async(req,res)=>{
     httpOnly:true,
     secure:true,
     sameSite:'none',
-    domain: 'lets-chat-frontend.onrender.com'
+   
  })
 
     res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
