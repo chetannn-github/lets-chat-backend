@@ -34,7 +34,8 @@ export const signup = async(req,res)=>{
         maxAge:1000*60*60*24*30,
         httpOnly:true,
         secure:true,
-        sameSite:'none'
+        sameSite:'none',
+        domain: 'lets-chat-frontend.onrender.com'
      })
 
       res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
@@ -63,12 +64,13 @@ export const login = async(req,res)=>{
    }
 
    let token = generateToken({userName});
-   
+
    res.cookie("token",token,{
     maxAge:1000*60*60*24*30,
     httpOnly:true,
     secure:true,
-    sameSite:'none'
+    sameSite:'none',
+    domain: 'lets-chat-frontend.onrender.com'
  })
 
     res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
