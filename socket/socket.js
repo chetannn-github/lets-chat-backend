@@ -1,27 +1,3 @@
-// import express from "express"
-// import http, { Server } from "http";
-
-
-// const app = express();
-// const server = http.createServer(app);
-
-// const io = new Server (server,{
-//     cors:{
-//         origin:["http://localhost:5173"],
-//         methods:["GET","POST"]
-//     }
-// });
-
-// io.on("connection",(socket)=>{
-//     console.log(socket.id);
-  
-//     socket.on("disconnect",()=>{
-//         console.log("user disconnected",socket.id)
-//     })
-//   })
-
-// export {io,app,server}
-
 
 import express from 'express';
 import http from 'http';
@@ -52,7 +28,7 @@ io.on('connection', (socket) => {
   console.log("hii " , socket.id)
 
 
-     const userId = socket.handshake.query.userId;
+    const userId = socket.handshake.query.userId;
     console.log(userId)
     if(userId) {userSocketMap[userId] = socket.id;}
 
@@ -60,9 +36,9 @@ io.on('connection', (socket) => {
 
 
     socket.on("disconnect",()=>{
-    console.log("disconnected" , socket.id);
-    delete userSocketMap[userId];
-     io.emit("getOnlineUsers",Object.keys(userSocketMap));
+        console.log("disconnected" , socket.id);
+        delete userSocketMap[userId];
+        io.emit("getOnlineUsers",Object.keys(userSocketMap));
     })
   
   
