@@ -33,7 +33,8 @@ export const signup = async(req,res)=>{
     res.cookie("token",token,{
         maxAge:1000*60*60*24*30,
         httpOnly:true,
-        secure:false,
+        secure:true,
+        sameSite:'none'
      })
 
       res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
@@ -62,12 +63,13 @@ export const login = async(req,res)=>{
    }
 
    let token = generateToken({userName});
-
+   
    res.cookie("token",token,{
-        maxAge:1000*60*60*24*30,
-        httpOnly:true,
-        secure:false,
-    })
+    maxAge:1000*60*60*24*30,
+    httpOnly:true,
+    secure:true,
+    sameSite:'none'
+ })
 
     res.status(201).json({_id:user._id,userName,profilePic:user.profilePic})
 
