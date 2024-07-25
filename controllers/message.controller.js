@@ -16,6 +16,7 @@ export const sendMessage = async(req,res) =>{
         participants:{$all:[senderId,recieverId]}
     });
 
+    
     if(!conversation){
         conversation = new Conversation({
             participants:[senderId,recieverId],
