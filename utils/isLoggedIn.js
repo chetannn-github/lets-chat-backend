@@ -17,7 +17,7 @@ export const isLoggedIn = async(req,res,next) =>{
         }
     }
     else{
-        res.status(401).send("not authorized login kro")
+        res.status(401).json({error:"not authorized login kro"})
     }
     
 }
