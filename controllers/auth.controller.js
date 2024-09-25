@@ -8,11 +8,11 @@ export const signup = async(req,res)=>{
 
     if(!userName || !password ||!fullName || !gender || !confirmPassword ){
         return res.status(400).json({error:"please fill all fields"})
-        }
+    }
     let profilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`;
 
     if(password!=confirmPassword){
-       return res.status(400).json({error:"Wah bhai, password ko bhi apni jodi pasand nahi aayi 😂"})
+       return res.status(400).json({error:"Wah bhai, password bhii same nhii likha jaa rhaa 😂"})
     }
 
     let user = await User.findOne({userName});

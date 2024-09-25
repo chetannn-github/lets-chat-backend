@@ -1,25 +1,21 @@
 import "dotenv/config";
 import express from "express";
+import cookieParser from "cookie-parser";
 import { connectToDb } from "./config/db.config.js";
+
 import authRoutes from "./routes/auth.routes.js"
 import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.routes.js"
-import cookieParser from "cookie-parser";
+
 import cors from "cors"
 import { app,server,io } from "./socket/socket.js";
 import axios from "axios"
-import cron from "node-cron"
+
+import job from "./cron/cron.js";
+
 const PORT = process.env.PORT || 3000;
 
-
-
-
-
-
-
-
-
-
+job.start();
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://lets-chat-frontend.onrender.com');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
@@ -32,10 +28,7 @@ app.use((req, res, next) => {
   }
 });
 
-cron.schedule('*/15 * * * *', () => {
-  // Ping your app's URL to keep it active
-  axios.get('https://lets-chat-backend-7s3j.onrender.com');
-});
+
 
 
 
