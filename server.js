@@ -62,7 +62,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser())
 
-
+app.get("/api/test",(req,res)=>{
+  res.send("test api to awake server");
+})
 app.use("/api/auth",authRoutes);
 app.use("/api/message",messageRoutes)
 app.use("/api/users",userRoutes)
