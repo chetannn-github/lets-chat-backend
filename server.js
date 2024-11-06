@@ -11,11 +11,11 @@ import cors from "cors"
 import { app,server,io } from "./socket/socket.js";
 import axios from "axios"
 
-import job from "./cron/cron.js";
+// import job from "./cron/cron.js";
 
 const PORT = process.env.PORT || 3000;
 
-job.start();
+// job.start();
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://lets-chat-frontend.onrender.com');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
